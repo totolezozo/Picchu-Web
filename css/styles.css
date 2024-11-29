@@ -13,6 +13,7 @@
 
 /* Basic body styling */
 body {
+    overflow: hidden;
     display: flex;
     justify-content: center;
     background: linear-gradient(135deg, #004225, #278619); ;
@@ -475,6 +476,7 @@ input {
 }
 
 footer {
+    
     text-align: center;
     color: white;
     font-size: 0.9em;
