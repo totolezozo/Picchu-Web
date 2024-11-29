@@ -475,8 +475,6 @@ input {
 }
 
 footer {
-    position: static;
-    bottom: auto;
     text-align: center;
     color: white;
     font-size: 0.9em;

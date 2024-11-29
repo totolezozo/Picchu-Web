@@ -485,3 +485,16 @@ document.querySelectorAll("button").forEach((button) => {
     button.addEventListener("mouseup", () => button.classList.remove("click"));
 });
 
+// Detect viewport height changes (keyboard open/close)
+const footer = document.querySelector('footer');
+let originalHeight = window.innerHeight;
+
+window.addEventListener('resize', () => {
+    if (window.innerHeight < originalHeight) {
+        // Keyboard is likely open
+        footer.style.display = 'none';
+    } else {
+        // Keyboard is closed
+        footer.style.display = 'block';
+    }
+});
