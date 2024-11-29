@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friend Profile</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="profile-page">
+        <div class="profile-section">
+            <div class="profile-picture-container">
+                <img src="../drawable/profile-hard.png" alt="Friend's Profile Picture" id="ProfilePicture">
+            </div>
+            <div class="username" id="friendUsername">Loading...</div>
+            <button id="friendRequestButton" class="friend-request-button">Send Friend Request</button>
+        </div>
+
+        <!-- Toggle Button for Friend's Friends List -->
+        <div class="friend-section">
+            <button id="friendsButton" class="btn">Friends</button>
+            <div id="friendsList" class="drawer-content hidden">
+                <p>Loading friends...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Configuration and Scripts -->
+    <script type="module" src="../javascript/friend_profile.js"></script>
+</body>
+</html>
+
+
+

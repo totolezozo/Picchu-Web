@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picchu - Main</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Mapbox GL JS Library -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet" />
+    <!-- Firebase SDK (if needed for additional functionality) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <script src="../javascript/main.js" defer></script>
+</head>
+<body>
+        <!-- Map Container -->
+        <div id="mapBackground">
+            <div id="map" style="width: 100%; height: 100%;"></div>
+        </div>
+        <div id="content">
+        <div class="container">
+            <h1>Welcome to Picchu <span id="username"></span>!</h1>
+            <p>Explore the map, find new places, and connect with friends!</p>
+        </div>
+        </div>
+        <div id="toolbar">
+            <button id="messagesBtn" class="toolbar-btn">
+                <img src="../Drawable/message-hard.png" class="icon" data-hover="../Drawable/message-soft.png" data-default="../Drawable/message-hard.png" alt="Messages">
+            </button>
+            <button id="plusBtn" class="toolbar-btn">
+                <img src="../Drawable/plus-hard.png" class="icon" data-hover="../Drawable/plus-soft.png" data-default="../Drawable/plus-hard.png" alt="Plus">
+            </button>
+            <button id="homeBtn" class="toolbar-btn">
+                <img src="../Drawable/logo-hard.png" class="icon" data-hover="../Drawable/logo-soft.png" data-default="../Drawable/logo-hard.png" alt="Home">
+            </button>
+            <button id="pinBtn" class="toolbar-btn">
+                <img src="../Drawable/pin-hard.png" class="icon" data-hover="../Drawable/pin-soft.png" data-default="../Drawable/pin-hard.png" alt="Pin">
+            </button>
+            <button id="accountBtn" class="toolbar-btn">
+                <img src="../Drawable/profile-hard.png" class="icon" data-hover="../Drawable/profile-soft.png" data-default="../Drawable/profile-hard.png" alt="Account">
+            </button>
+        </div>
+        
+        <div id="plusDrawer" class="plus-drawer">
+        <input type="text" id="userSearchInput" placeholder="Search for users..." />
+        <div id="searchResults"></div>
+        </div>
+
+    
+        <script src="main.js" defer></script>
+    
+</body>
+</html>

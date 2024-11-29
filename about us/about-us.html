@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Picchu: Rediscover Life Around You</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Flappy Bird Header -->
+  <header>
+    <div id="game-container">
+      <div id="bird"></div>
+      <div id="score">0</div>
+      <div id="game-over" style="display: none;">Click to start.</div>
+    </div>
+    <div id="ground"></div>
+    <script src="script_flappy.js"></script>
+  </header>
+
+  <!-- About Us Section -->
+  <section class="about-us">
+    <h1>Welcome to Picchu</h1>
+    <p>Rediscover life around you with our location-based social network.</p>
+
+    <!-- Carousel -->
+    <div class="carousel">
+      <div class="carousel-inner">
+        <img src="image1.png" alt="Team Image 1">
+        <img src="image2.jpg" alt="Team Image 2">
+        <img src="image3.JPG" alt="Team Image 3">
+        <img src="image4.jpg" alt="Team Image 4">
+        <img src="image5.png" alt="Team Image 5">
+        <img src="image9.png" alt="Team Image 9">
+      </div>
+      <button class="prev" onclick="moveCarousel(-1)">&#10094;</button>
+      <button class="next" onclick="moveCarousel(1)">&#10095;</button>
+    </div>
+
+    <!-- Team Section -->
+    <h2>Meet the Team</h2>
+    <div class="team">
+      <div class="member">
+        <img src="thomas.jpg" alt="Thomas Chometon">
+        <h3>Thomas Chometon</h3>
+        <p>Role: Android Developer</p>
+        <button onclick="toggleBio('bio1')">Read Bio</button>
+        <p id="bio1" class="bio" style="display: none;">
+          Thomas led the Android development, bringing our vision to life on mobile platforms.
+        </p>
+      </div>
+      <div class="member">
+        <img src="david.jpg" alt="David Khersis">
+        <h3>David Khersis</h3>
+        <p>Role: iOS Developer</p>
+        <button onclick="toggleBio('bio2')">Read Bio</button>
+        <p id="bio2" class="bio" style="display: none;">
+          David created the iOS app and contributed to the initial vision for Picchu.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <h2>Key Features</h2>
+    <ul>
+      <li>📍 Location-Based Interactions: Engage with posts near you on a live map.</li>
+      <li>🎮 Gamified Experience: Earn medals and trophies for exploring new places.</li>
+      <li>🌟 NFT Integration: Collect unique digital souvenirs linked to real-world locations.</li>
+      <li>🔒 Privacy-Focused: Built with robust security to protect your data.</li>
+      <li>📊 Visual Mapping: Interactive and customizable map displays for all posts.</li>
+    </ul>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="timeline">
+    <h2>Development Timeline</h2>
+    <div class="milestone">
+      <h3>March 2024</h3>
+      <p>Initial iOS prototype with map functionality completed.</p>
+    </div>
+    <div class="milestone">
+      <h3>September 2024</h3>
+      <p>Android app development commenced and progressed rapidly.</p>
+    </div>
+    <div class="milestone">
+      <h3>November 2024</h3>
+      <p>Website development to continue the vision of Picchu.</p>
+    </div>
+  </section>
+
+<!-- Footer -->
+<footer>
+  <p>
+    &copy; 2024 Picchu Project | 
+    <a href="https://github.com/totolezozo/Picchu-Web" target="_blank">GitHub</a> | 
+    <a href="javascript:void(0);" onclick="toggleDrawer()">Contact Us</a>
+  </p>
+</footer>
+
+<!-- Contact Us Drawer -->
+<div id="contact-drawer" class="contact-drawer">
+  <div class="drawer-header">
+    <h2>Contact Us</h2>
+    <button class="close-btn" onclick="toggleDrawer()">&#10005;</button>
+  </div>
+  <form id="contact-form" onsubmit="sendEmail(event)">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+    
+    <label for="email">Your Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+    
+    <button type="submit">Send</button>
+  </form>
+</div>
+
+
+  <script src="script_about_us.js"></script>
+</body>
+</html>

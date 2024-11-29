@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="../css/styles.css">
+<!-- Firebase App (the core Firebase SDK) -->
+<script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+
+<!-- Firebase Auth SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+
+
+<!-- Mapbox -->
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet" />
+
+<script type = 'module' src="../javascript/login.js" defer></script>
+</head>
+<body>
+    <div id="mapBackground">
+        <div id="map" style="width: 100vw; height: 100vh;"></div>
+    </div>
+    
+    <div class="container">
+        <img src="../Drawable/logo.png" alt="Picchu Logo" width="100" height="auto">
+
+        <div id="loginForm" class="form-container active">
+            <h1>Picchu</h1>
+            <input type="text" id="email" placeholder="Pseudo or Email" required>
+
+            <input type="password" id="password" placeholder="Password" required>
+            <p>
+              <a href="#" id="forgotPasswordLink" >
+                  Forgot your password ?
+              </a>
+            </p>
+          
+
+          
+            <button id="loginBtn" class="btn">Login</button>
+            <button id="googleSignInBtn" class="btn">Sign in with Google</button>
+            <p>Don't have an account? <a href="#" id="showRegister">Create one here</a></p>
+        </div>
+
+        <!-- Registration Form -->
+        <div id="registerForm" class="form-container">
+            <h1>Picchu</h1>
+            <input type="text" id="firstName" placeholder="First Name" required>
+            <input type="text" id="lastName" placeholder="Last Name" required>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="email" id="regEmail" placeholder="Email" required>
+            <div>
+              <label for="birthdate">Birthdate:</label>
+              <input type="date" id="birthdate" required>
+          </div>
+          
+            <div class="checkbox-group">
+                <label><input type="radio" name="gender" value="male"> Male</label>
+                <label><input type="radio" name="gender" value="female"> Female</label>
+            </div>
+            
+            <input type="password" id="regPassword" placeholder="Password" required>
+            <p>Password strength :</p>
+            <span id="passwordStrengthIndicator"></span>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            <button id="createAccountBtn" class="btn">Sign In</button>
+            <p>Already have an account? <a href="#" id="showLogin">Log in</a></p>
+        </div>
+        <div id="emailVerification" class="form-container">
+          <h1>Vérification en cours</h1>
+          <p>Un email de vérification a été envoyé à votre adresse. Veuillez vérifier votre boîte mail et cliquer sur le lien pour valider votre compte.</p>
+          <p>Une fois cela fait, cliquez sur le bouton ci-dessous :</p>
+          <button id="checkVerificationBtn" class="btn">J'ai vérifié mon email</button>
+      </div>
+                <!-- Add a hidden form for resetting the password -->
+                <div id="forgotPasswordForm" class="form-container">
+                  <h1>Picchu</h1>
+                  <p>Enter email to receive a reset link.</p>
+                  <input type="email" id="resetEmail" placeholder="Email" required>
+                  <button id="resetPasswordBtn" class="btn">Envoyer le lien</button>
+                  <p>
+                      <a href="#" id="backToLogin" style="text-decoration: underline; color: blue; cursor: pointer;">
+                          back to login
+                      </a>
+                  </p>
+              </div>
+        <!-- Popup for error messages -->
+        <div id="popup" class="popup">Invalid username or password</div>
+  
+    </div>
+<!-- Footer -->
+<footer>
+    <p>
+      &copy; 2024 Picchu | 
+      <a href="../about us/about-us.html" target="_blank">About Us</a> | 
+      <a href="javascript:void(0);" onclick="toggleDrawer()">Contact Us</a>
+    </p>
+    <script src="../javascript/footer.js" defer></script>
+
+  </footer>
+  
+  <!-- Contact Us Drawer -->
+  <div id="contact-drawer" class="contact-drawer">
+    <div class="drawer-header">
+      <h2>Contact Us</h2>
+      <button class="close-btn" onclick="toggleDrawer()">&#10005;</button>
+    </div>
+    <form id="contact-form" onsubmit="sendEmail(event)">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+      
+      <label for="email">Your Email:</label>
+      <input type="email" id="contactemail" name="email" placeholder="Enter your email" required>
+      
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+      
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+    
+</body>
+</html>
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="conversation-container">
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <a id="profilePictureLink" href="#">
+                <img id="friendProfilePicture" src="../drawable/profile-hard.png" alt="Friend" />
+            </a>
+            <a id="usernameLink" href="#">
+                <span id="friendUsername">Friend's Username</span>
+            </a>
+        </div>
+
+        <!-- Message Display Area -->
+        <div id="messageArea" class="message-area"> </div>
+
+
+        <div id="imagePreviewContainer" style="display: none;">
+            <img id="imagePreview" src="" alt="Preview" />
+            <button id="deleteImageButton" class="btn">❌</button>
+        </div>
+        
+        <!-- Message Input -->
+        <div class="message-input">
+            <textarea type="text" id="messageInput" rows="2" placeholder="Type your message..." ></textarea>
+            <input type="file" id="imageInput" multiple accept="image/*" style="display: none;">
+            <button id="uploadImageButton" class="btn">📷</button>
+            <button id="sendButton" class="btn">⇑</button>
+        </div>
+    </div>
+
+
+
+
+    <script type="module" src="../javascript/conversation.js"></script>
+</body>
+</html>
