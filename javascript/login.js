@@ -59,7 +59,7 @@ function redirectToMain(userId) {
                 const lastLocalizationKnown = `${latitude},${longitude}`;
 
                 try {
-                    const userDocRef = doc(db, "users", userId); // Reference to Firestore document
+                    const userDocRef = doc(db, "users", userId); // Reference Firestore document by UID
                     await updateDoc(userDocRef, { lastLocalizationKnown });
                     console.log("Location updated successfully:", lastLocalizationKnown);
 
@@ -191,7 +191,7 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
         }
 
         showPopup("Login successful!", "info");
-        redirectToMain(email);
+        redirectToMain(user.uid); // Pass UID to `redirectToMain`
     } catch (error) {
         showPopup("Login error: " + error.message, "error");
     }
@@ -272,7 +272,6 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
         }
     }
 });
-
 
 document.getElementById("createAccountBtn").addEventListener("click", async () => {
     // List of fields to validate
@@ -365,7 +364,6 @@ document.getElementById("createAccountBtn").addEventListener("click", async () =
         showPopup("Error during account creation: " + error.message, "error");
     }
 });
-
 // Check Email Verification
 document.getElementById("checkVerificationBtn").addEventListener("click", async () => {
     try {
@@ -394,7 +392,6 @@ document.getElementById("backToLogin").addEventListener("click", (e) => {
     document.getElementById("forgotPasswordForm").classList.remove("active");
     document.getElementById("loginForm").classList.add("active");
 });
-
 // Handle Password Reset
 document.getElementById("resetPasswordBtn").addEventListener("click", async () => {
     const email = document.getElementById("resetEmail").value;
@@ -417,7 +414,6 @@ document.getElementById("resetPasswordBtn").addEventListener("click", async () =
         }
     }
 });
-
 // Function to check password strength
 function checkPasswordStrength(password) {
     const strengthIndicator = document.getElementById("passwordStrengthIndicator");
@@ -448,7 +444,6 @@ function checkPasswordStrength(password) {
         strengthIndicator.style.color = "green";
     }
 }
-
 // Attach input event to password field
 document.getElementById("regPassword").addEventListener("input", function () {
     const password = this.value;
