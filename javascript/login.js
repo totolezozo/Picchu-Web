@@ -50,7 +50,6 @@ function showPopup(message, type = "info") {
         popup.classList.remove("show");
     }, 3000);
 }
-
 function redirectToMain(userId) {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -80,8 +79,6 @@ function redirectToMain(userId) {
         window.location.href = "main.html";
     }
 }
-
-
 // Mapbox Configuration and User Location Setup
 document.addEventListener("DOMContentLoaded", function () {
     mapboxgl.accessToken = "pk.eyJ1IjoibnVveGlzIiwiYSI6ImNtMXkxMWM0dDE2cnIya3BvZHB0d2Y0ajMifQ.9CA6tK6WViRrbOluCy2CJg";
@@ -139,8 +136,6 @@ async function getCountryAndRegion() {
         );
     });
 }
-
-
 // Form Toggling
 document.getElementById("showRegister").addEventListener("click", (e) => {
     e.preventDefault();
@@ -201,6 +196,7 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
         showPopup("Login error: " + error.message, "error");
     }
 });
+
 document.getElementById("loginForm").addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
         event.preventDefault(); // Prevent the default form submission behavior
@@ -208,7 +204,6 @@ document.getElementById("loginForm").addEventListener("keydown", (event) => {
     }
 });
 
-// Google Sign-In
 document.getElementById("googleSignInBtn").addEventListener("click", async () => {
     const provider = new GoogleAuthProvider();
 
@@ -217,33 +212,30 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
         const result = await signInWithPopup(auth, provider);
         const user = result.user;
 
-        // Log the user object
-        console.log("Authenticated User:", user);
-
         if (!user) {
             showPopup("Sign-in failed. Please try again.", "error");
             return;
         }
 
-        const email = user.email;
-        console.log("User Email:", email);
+        const uid = user.uid; // Use Firebase UID as the identifier
+        console.log("Authenticated User UID:", uid);
 
         // Check if the user already exists in Firestore
-        const userDocRef = doc(db, "users", email);
-        const userSnapshot = await getDocs(query(collection(db, "users"), where("email", "==", email)));
+        const userDocRef = doc(db, "users", uid);
+        const userSnapshot = await getDocs(query(collection(db, "users"), where("uid", "==", uid)));
 
-        console.log("User Snapshot:", userSnapshot.empty ? "No user found" : "User exists");
         const { country, region } = await getCountryAndRegion();
+
         if (userSnapshot.empty) {
             // Create a new user profile in Firestore
             const userProfile = {
-                accountDateCreation : Timestamp.now(),
+                accountDateCreation: Timestamp.now(),
                 badges: [],
-                accountStatus : 1,
+                accountStatus: 1,
                 collectedLocations: [],
-                countryOfOrigin :country,
-                regionInCountry :region,
-                email,
+                countryOfOrigin: country,
+                regionInCountry: region,
+                email: user.email,
                 friendRequests: [],
                 friends: [],
                 gender: "",
@@ -251,9 +243,9 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
                 isTyping: false,
                 name: user.displayName || "",
                 surname: "",
-                username: email.split("@")[0],
+                username: user.email.split("@")[0], // Default username from email
                 birthdate: "",
-                phoneNumber: "",
+                phoneNumber: user.phoneNumber || "",
                 points: 0,
                 profilePictureURL: user.photoURL || null,
             };
@@ -267,8 +259,7 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
         }
 
         // Redirect to the main page
-        redirectToMain(user.email); // Pass the email as the Firestore document ID
-
+        redirectToMain(uid); // Pass the UID for navigation or further processing
     } catch (error) {
         console.error("Google Sign-In Error:", error.code, error.message);
 
@@ -281,8 +272,6 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
         }
     }
 });
-
-
 
 
 document.getElementById("createAccountBtn").addEventListener("click", async () => {
@@ -330,6 +319,7 @@ document.getElementById("createAccountBtn").addEventListener("click", async () =
         const email = document.getElementById("regEmail").value;
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
+        const uid = user.uid; // Use Firebase UID as the identifier
 
         // Send verification email
         await sendEmailVerification(user);
@@ -341,14 +331,16 @@ document.getElementById("createAccountBtn").addEventListener("click", async () =
         const birthdate = document.getElementById("birthdate").value; // Birthdate value
         const gender = document.querySelector('input[name="gender"]:checked')?.value || "";
         const { country, region } = await getCountryAndRegion();
+
         console.log("Country and Region:", { country, region });
-        await setDoc(doc(db, "users", email), {
-            accountDateCreation : Timestamp.now(),
+
+        await setDoc(doc(db, "users", uid), {
+            accountDateCreation: Timestamp.now(),
             badges: [],
             collectedLocations: [],
             email,
-            accountStatus : 1,
-            countryOfOrigin : country,
+            accountStatus: 1,
+            countryOfOrigin: country,
             regionInCountry: region,
             friendRequests: [],
             friends: [],
@@ -374,7 +366,6 @@ document.getElementById("createAccountBtn").addEventListener("click", async () =
     }
 });
 
-
 // Check Email Verification
 document.getElementById("checkVerificationBtn").addEventListener("click", async () => {
     try {
@@ -391,14 +382,12 @@ document.getElementById("checkVerificationBtn").addEventListener("click", async 
         showPopup("Error checking email verification: " + error.message, "error");
     }
 });
-
 // Show Forgot Password Form
 document.getElementById("forgotPasswordLink").addEventListener("click", (e) => {
     e.preventDefault();
     document.getElementById("loginForm").classList.remove("active");
     document.getElementById("forgotPasswordForm").classList.add("active");
 });
-
 // Return to Login Form
 document.getElementById("backToLogin").addEventListener("click", (e) => {
     e.preventDefault();
